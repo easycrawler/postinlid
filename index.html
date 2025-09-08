@@ -1,11 +1,11 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Postinlid Courier – Fast, Reliable Shipping</title>
-  <meta name="description" content="POSTLID – a modern courier service with real-time shipment tracking." />
+  <meta name="description" content="Postinlid – a modern courier service with real-time shipment tracking." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -340,37 +340,23 @@
     <p>© <span id="year"></span> Postinlid Courier</p>
   </footer>
 
-     <script>const SHIPMENTS = {
-  "PNL12345678799": {
-    status: "Out for Delivery",
-    eta: "2025-09-07",
-    origin: "Mbabane",
-    destination: "Manzini",
-    service: "Express Delivery",
-    weight: "2.5 kg",
-    lastUpdated: "2025-09-07 08:30",
-    checkpoints: [
-      "2025-09-05 09:00 – Picked up in Mbabane",
-      "2025-09-06 14:00 – Arrived at Manzini hub",
-      "2025-09-07 08:30 – Out for Delivery"
-    ]
-  },
-  "PNL38948736633": {
-    status: "Airport Transit",
-    eta: "2025-09-10",
-    origin: "Swaziland",
-    destination: "Decatur",
-    service: "International Cargo",
-    weight: "12 kg",
-    lastUpdated: "2025-09-08 16:45",
-    checkpoints: [
-      "2025-09-06 12:20 – Shipped from Swaziland",
-      "2025-09-07 09:30 – Arrived at Johannesburg airport",
-      "2025-09-08 16:45 – Cleared customs, in transit"
-    ]
-  }
-};
-
+  <script>
+    const SHIPMENTS = {
+      "PNL123456789": {
+        status: "Out for Delivery",
+        eta: "2025-09-07",
+        origin: "Mbabane",
+        destination: "Manzini",
+        weight: "2.5 kg",
+        service: "Express Delivery",
+        lastUpdated: "2025-09-06 08:45",
+        checkpoints: [
+          "2025-09-05 14:20 – Arrived at Mbabane Facility",
+          "2025-09-05 18:45 – Departed Mbabane Facility",
+          "2025-09-06 07:30 – Arrived at Manzini Facility",
+          "2025-09-06 08:30 – Out for Delivery",]
+      }
+    };
 
     const form = document.getElementById('trackForm');
     const result = document.getElementById('trackResult');
