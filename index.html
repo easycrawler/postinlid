@@ -340,23 +340,37 @@
     <p>© <span id="year"></span> Postinlid Courier</p>
   </footer>
 
-  <script>
-    const SHIPMENTS = {
-      "PNL123456789": {
-        status: "Out for Delivery",
-        eta: "2025-09-07",
-        origin: "Mbabane",
-        destination: "Manzini",
-        weight: "2.5 kg",
-        service: "Express Delivery",
-        lastUpdated: "2025-09-06 08:45",
-        checkpoints: [
-          "2025-09-05 14:20 – Arrived at Mbabane Facility",
-          "2025-09-05 18:45 – Departed Mbabane Facility",
-          "2025-09-06 07:30 – Arrived at Manzini Facility",
-          "2025-09-06 08:30 – Out for Delivery",]
-      }
-    };
+     <script>const SHIPMENTS = {
+  "PNL12345678799": {
+    status: "Out for Delivery",
+    eta: "2025-09-07",
+    origin: "Mbabane",
+    destination: "Manzini",
+    service: "Express Delivery",
+    weight: "2.5 kg",
+    lastUpdated: "2025-09-07 08:30",
+    checkpoints: [
+      "2025-09-05 09:00 – Picked up in Mbabane",
+      "2025-09-06 14:00 – Arrived at Manzini hub",
+      "2025-09-07 08:30 – Out for Delivery"
+    ]
+  },
+  "PNL38948736633": {
+    status: "Airport Transit",
+    eta: "2025-09-10",
+    origin: "Swaziland",
+    destination: "Decatur",
+    service: "International Cargo",
+    weight: "12 kg",
+    lastUpdated: "2025-09-08 16:45",
+    checkpoints: [
+      "2025-09-06 12:20 – Shipped from Swaziland",
+      "2025-09-07 09:30 – Arrived at Johannesburg airport",
+      "2025-09-08 16:45 – Cleared customs, in transit"
+    ]
+  }
+};
+
 
     const form = document.getElementById('trackForm');
     const result = document.getElementById('trackResult');
@@ -401,6 +415,3 @@
 </body>
 
 </html>
-
-
-
