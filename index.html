@@ -332,7 +332,7 @@
     <section id="contact">
       <h2>Contact Us</h2>
       <p>Email: support@postinlid.com</p>
-      <p>Phone: +44 75185 77794</p>
+      <p>Phone: +268 2400 0000</p>
     </section>
   </main>
 
@@ -340,9 +340,25 @@
     <p>© <span id="year"></span> Postinlid Courier</p>
   </footer>
 
-  <script>
-    const SHIPMENTS = {
-      "PNL333684719": {
+<script>
+  const SHIPMENTS = {
+    "PNL123456789": {
+      status: "Out for Delivery",
+      eta: "2025-09-09",
+      origin: "Mbabane",
+      destination: "Manzini",
+      weight: "2.5 kg",
+      service: "Express Delivery",
+      lastUpdated: "2025-09-08 08:45",
+      checkpoints: [
+        "2025-09-05 14:20 – Arrived at Mbabane Facility",
+        "2025-09-05 18:45 – Departed Mbabane Facility",
+        "2025-09-06 07:30 – Arrived at Manzini Facility",
+        "2025-09-08 08:30 – Out for Delivery"
+      ]
+    },
+
+    "PNL333684719": {
         status: "Await clearance at facility",
         eta: "2025-09-06",
         origin: "Geneva, Switz",
@@ -354,76 +370,80 @@
           "2025-09-01 14:20 – Arrived Decatur Facility",
           "2025-09-01 18:45 – Departed Decatur Facility",
           "2025-09-02 07:30 – Arrived LA Facility",
-          "2025-09-06 08:30 – Await Facility Clearance ",]
-      },
-      "PNL123456888": {
-        status: "Transit",
-        eta: "2025-09-06",
-        origin: "Mbabane",
-        destination: "SA",
-        weight: "2.5 kg",
-        service: "Express Delivery",
-        lastUpdated: "2025-09-05 08:45",
-        checkpoints: [
-          "clearance facility",]
-      },
-      "PNL239038444": {
-        status: "Arrived Final airport",
-        eta: "2025-09-12",
-        origin: "Swaziland",
-        destination: "decature illinois",
-        lastUpdated: "2025-09-07 08:49",
-        checkpoints: [
-          "approaching clearance",]
-      }
-      
-    };
+          "2025-09-06 08:30 – Await Facility Clearance "
+        ]
+    },
 
-    const form = document.getElementById('trackForm');
-    const result = document.getElementById('trackResult');
-    document.getElementById('year').textContent = new Date().getFullYear();
+    "LP123456888US": {
+      status: "In Transit",
+      eta: "2025-09-10",
+      origin: "Mbabane",
+      destination: "Johannesburg, SA",
+      weight: "5.0 kg",
+      service: "Standard Delivery",
+      lastUpdated: "2025-09-08 09:20",
+      checkpoints: [
+        "2025-09-07 11:10 – Departed Mbabane Facility",
+        "2025-09-08 05:40 – Clearance at Border Facility"
+      ]
+    }
+  };
 
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      const num = document.getElementById('trackingNumber').value.trim().toUpperCase();
-      const data = SHIPMENTS[num];
-      result.classList.remove('show');
-      if (!data) {
-        result.innerHTML = `<strong>Not found</strong><p>Please check the tracking number and try again.</p>`;
-      } else {
-        result.innerHTML = `
-          <h3>Shipment ${num}</h3>
-          <p>Status: <strong>${data.status}</strong></p>
-          <p>From ${data.origin} to ${data.destination}</p>
-          <p>ETA: ${data.eta}</p>
-          <p>Service: ${data.service}</p>
-          <p>Weight: ${data.weight}</p>
-          <p>Last Updated: ${data.lastUpdated}</p>
-          <h4>Tracking History:</h4>
-          <ul>${data.checkpoints.map(cp => `<li>${cp}</li>`).join('')}</ul>
-        `;
+  const form = document.getElementById('trackForm');
+  const result = document.getElementById('trackResult');
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const input = document.getElementById('trackingNumber').value.trim().toUpperCase();
+    let foundKey = null;
+
+    // Allow partial match
+    for (let key in SHIPMENTS) {
+      if (key.includes(input)) {
+        foundKey = key;
+        break;
       }
-      setTimeout(() => result.classList.add('show'), 50);
+    }
+
+    result.classList.remove('show');
+
+    if (!foundKey) {
+      result.innerHTML = `<strong>Not found</strong><p>Please check the tracking number and try again.</p>`;
+    } else {
+      const data = SHIPMENTS[foundKey];
+      result.innerHTML = `
+        <h3>Shipment ${foundKey}</h3>
+        <p>Status: <strong>${data.status}</strong></p>
+        <p>From ${data.origin} to ${data.destination}</p>
+        <p>ETA: ${data.eta}</p>
+        <p>Service: ${data.service}</p>
+        <p>Weight: ${data.weight}</p>
+        <p>Last Updated: ${data.lastUpdated}</p>
+        <h4>Tracking History:</h4>
+        <ul>${data.checkpoints.map(cp => `<li>${cp}</li>`).join('')}</ul>
+      `;
+    }
+    setTimeout(() => result.classList.add('show'), 50);
+  });
+
+  // Fade-in on scroll
+  const fadeEls = document.querySelectorAll('.fade-target');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('fade-in');
+        observer.unobserve(entry.target);
+      }
     });
+  }, { threshold: 0.1 });
 
-    // Fade-in on scroll
-    const fadeEls = document.querySelectorAll('.fade-target');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('fade-in');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
+  fadeEls.forEach(el => observer.observe(el));
+</script>
 
-    fadeEls.forEach(el => observer.observe(el));
-  </script>
 </body>
 
 </html>
-
-
 
 
 
