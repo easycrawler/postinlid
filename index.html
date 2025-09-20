@@ -330,11 +330,25 @@
     </div>
 
     <section id="contact">
-      <h2>Contact Us</h2>
-      <p>Email: support@postinlid.com</p>
-      <p>Phone: +44 75185 77794, +268 7956 3259 </p>
-    </section>
-  </main>
+  <h2>Contact Us</h2>
+  <p>Email: <a href="mailto:support@postinlid.com">support@postinlid.com</a></p>
+  <p>
+    Phone: 
+    <a href="#" onclick="dialNumber('+447518577794')">+44 75185 77794</a>, 
+    <a href="#" onclick="dialNumber('+26879563259')">+268 7956 3259</a>
+  </p>
+</section>
+
+<script>
+  function dialNumber(number) {
+    if (confirm("Do you want to call " + number + "?")) {
+      window.location.href = "tel:" + number;
+    }
+  }
+</script>
+</main>
+
+  
 
   <footer>
     <p>© <span id="year"></span> Postinlid Courier</p>
