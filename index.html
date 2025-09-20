@@ -328,16 +328,32 @@
       <a href="#airport" class="close">&times;</a>
       <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=1600&q=80" alt="">
     </div>
-
-    <section id="contact">
+<section id="contact">
   <h2>Contact Us</h2>
   <p>Email: <a href="mailto:support@postinlid.com">support@postinlid.com</a></p>
   <p>
     Phone: 
-    <a href="#" onclick="dialNumber('+447518577794')">+44 75185 77794</a>, 
-    <a href="#" onclick="dialNumber('+26879563259')">+268 7956 3259</a>
+    <a href="javascript:void(0)" class="rainbow-text" onclick="dialNumber('+447518577794')">+44 75185 77794</a>, 
+    <a href="javascript:void(0)" class="rainbow-text" onclick="dialNumber('+26879563259')">+268 7956 3259</a>
   </p>
 </section>
+
+<style>
+  .rainbow-text {
+    background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+    background-clip: text;               /* ✅ Works in Firefox */
+    -webkit-background-clip: text;       /* ✅ Works in Chrome/Safari */
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .rainbow-text:hover {
+    text-decoration: underline;
+  }
+</style>
 
 <script>
   function dialNumber(number) {
@@ -346,6 +362,8 @@
     }
   }
 </script>
+
+
 </main>
 
   
